@@ -158,32 +158,29 @@ LinkedList.prototype.addInPos = function(pos,value){
 LinkedList.prototype.removeFromPos = function(pos){
   // Tu código aca:
   // cuando la lista esta vacia
-  if (!this.head || pos < 0) {
+  if (!this.head) {
     return false;
   }
-  let nodoAnterior = this.head;
-  let contador = 0;
-  // cuando el nodo esta al inicio
+  // si la posicion es al inicio de la lista
   if (pos === 0) {
+    let apuntador = this.head;
     this.head = this.head.next;
-    return apuntador;
+    return apuntador.value;
   }
-  // recorrido de la lista
-  while (apuntador.next){
-    contador++
-    if (contador === pos){
-      apuntador = apuntador.next.next;
-      return apuntador;
+  // si la posicion esta en el medio de la lista
+  let contador = 0;
+  let apuntador = this.head;
+  let nodoABorrar;
+  while (apuntador) {
+    if (contador === pos - 1) {
+      nodoABorrar = apuntador.next;
+      apuntador.next = apuntador.next.next;
+      return nodoABorrar.value;
     }
+    contador++;
     apuntador = apuntador.next;
-
   }
-
-if (!previous || !previous.next) {
-  return;
-}
-previous.next = previous.next.next;     
-return this.head
+  return false;
 }
 
 
