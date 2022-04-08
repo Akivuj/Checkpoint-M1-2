@@ -43,8 +43,15 @@ const {
 // allí la recursión
 
 var objContains = function(obj, prop, value){
-    /* Tu codigo aqui */
-
+  /* Tu codigo aqui */
+  for (propiedad in obj){
+    if (obj[propiedad] === value && propiedad === prop){
+      return true;
+    } else if (typeof obj[propiedad] === 'object'){
+      return objContains (obj[propiedad],prop,value);
+    }
+  }
+  return false;
 }
 
 
@@ -67,7 +74,6 @@ var objContains = function(obj, prop, value){
 // Para números negativos de n debe devolver false
 function secuenciaHenry(array, n) {
   // Tu código aca:
-
 } 
 
 // ---------------------
@@ -87,8 +93,19 @@ function secuenciaHenry(array, n) {
 //    lista.size(); --> 3
 
 LinkedList.prototype.size = function(){
-    /* Tu codigo aqui */
-
+  /* Tu codigo aqui */
+  let contador = 0;
+  let apuntador = this.head;
+  if (!apuntador){
+    return 0;
+  } else {
+    contador++;
+  }
+  while (apuntador.next){
+    apuntador = apuntador.next;
+    contador++; 
+  }
+  return contador;
 }
 
 // EJERCICIO 4
@@ -108,8 +125,20 @@ LinkedList.prototype.size = function(){
 //    sin antes tener cargada la posición 0 y 1.
 
 LinkedList.prototype.addInPos = function(pos,value){
-      /* Tu codigo aqui */
-
+  /* Tu codigo aqui */
+  let apuntador = this.head;
+  let nuevoNodo = new Node(value);
+  let contador = 0;
+  if (!apuntador){
+    return false;
+  }
+  while (contador !== pos - 1){
+    apuntador = apuntador.next;
+    contador++;
+  }
+  nuevoNodo.next = apuntador.next;
+  apuntador.next = nuevoNodo;
+  return true;
 }
 
 // EJERCICIO 5
@@ -128,7 +157,33 @@ LinkedList.prototype.addInPos = function(pos,value){
 
 LinkedList.prototype.removeFromPos = function(pos){
   // Tu código aca:
-    
+  // cuando la lista esta vacia
+  if (!this.head || pos < 0) {
+    return false;
+  }
+  let nodoAnterior = this.head;
+  let contador = 0;
+  // cuando el nodo esta al inicio
+  if (pos === 0) {
+    this.head = this.head.next;
+    return apuntador;
+  }
+  // recorrido de la lista
+  while (apuntador.next){
+    contador++
+    if (contador === pos){
+      apuntador = apuntador.next.next;
+      return apuntador;
+    }
+    apuntador = apuntador.next;
+
+  }
+
+if (!previous || !previous.next) {
+  return;
+}
+previous.next = previous.next.next;     
+return this.head
 }
 
 
@@ -158,7 +213,20 @@ LinkedList.prototype.removeFromPos = function(pos){
 
 var controlAcces = function(queue, event){
   // Tu código aca:
-    
+  let arrayNombre = [];
+  let arrayTicket = [];
+  queue.array.forEach(function (elemento){
+    for (let i = 0; i < arrayTicket.length; i++){
+      if (elemento.ticket.number === arrayTicket[i]){
+        return;
+      }
+    }
+    if (elemento.age >= 18 && elemento.ticket.event === event){
+      arrayNombre.push(elemento.fullname);
+      arrayTicket.push(elemento.ticket.number);
+    }
+  })
+  return arrayNombre;
 }
 
 
@@ -265,8 +333,10 @@ var specialSort = function(array, firstOrd, secondOrd) {
 //    sumaDiez(11); --> Devolverá 21 (Ya que 11 + 10 = 21)
 
 function closureSum(numFijo) {
-    /* Tu codigo aqui */
-
+  /* Tu codigo aqui */
+  return function(num){
+    return numFijo + num;
+  }
 }
 
 // ------------------- No Cambies nada de aqui abajo ----------------------------

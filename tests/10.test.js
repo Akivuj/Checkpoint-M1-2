@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { closureSum } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 10: closureSum", function () {
+describe("EJERCICIO 10: closureSum", function () {
   it("La función generada debe sumar 5 al argumento pasado", function () {
     var sumaCinco = closureSum(5);
     var sumaDiez = closureSum(10);
