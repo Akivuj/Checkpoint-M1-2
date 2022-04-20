@@ -5,12 +5,7 @@
 // métodos o construir determinadas funciones explicados más abajo. Pero todos los métodos ya implementados
 // en las homeworks no es necesario que los vuelvan a definir.
 
-const {
-  Queue,
-  Node,
-  LinkedList,
-  BinarySearchTree
-} = require('./DS.js');
+const { Queue, Node, LinkedList, BinarySearchTree } = require("./DS.js");
 
 // ----------------------
 
@@ -42,18 +37,17 @@ const {
 // Pista: utilizar typeof para determinar si el valor de una propiedad es un objeto para aplicar
 // allí la recursión
 
-var objContains = function(obj, prop, value){
+var objContains = function (obj, prop, value) {
   /* Tu codigo aqui */
-  for (propiedad in obj){
-    if (obj[propiedad] === value && propiedad === prop){
+  for (propiedad in obj) {
+    if (obj[propiedad] === value && propiedad === prop) {
       return true;
-    } else if (typeof obj[propiedad] === 'object'){
-      return objContains (obj[propiedad],prop,value);
+    } else if (typeof obj[propiedad] === "object") {
+      return objContains(obj[propiedad], prop, value);
     }
   }
   return false;
-}
-
+};
 
 // EJERCICIO 2
 // Secuencia inventada: f(n) = (f(n-1) + f(n-2) + f(n-3)) x 2
@@ -74,7 +68,42 @@ var objContains = function(obj, prop, value){
 // Para números negativos de n debe devolver false
 function secuenciaHenry(array, n) {
   // Tu código aca:
-} 
+  // switch (expr) {
+  //   case "Naranjas":
+  //     console.log("El kilogramo de naranjas cuesta $0.59.");
+  //     break;
+  //   case "Manzanas":
+  //     console.log("El kilogramo de manzanas cuesta $0.32.");
+  //     break;
+  //   case "Platanos":
+  //     console.log("El kilogramo de platanos cuesta $0.48.");
+  //     break;
+  //   case "Cerezas":
+  //     console.log("El kilogramo de cerezas cuesta $3.00.");
+  //     break;
+  //   case "Mangos":
+  //   case "Papayas":
+  //     console.log("El kilogramo de mangos y papayas cuesta $2.79.");
+  //     break;
+  //   default:
+  //     console.log(
+  //       "Lo lamentamos, por el momento no disponemos de " + expr + "."
+  //     );
+  // }
+  // let suma = function (numero) {
+  //   if (numero === 0) {
+  //     return numero;
+  //   }
+  //   return numero + suma(numero - 1);
+  // };
+  let palabra = function (elemento) {
+    if (typeof elemento === "string") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+}
 
 // ---------------------
 
@@ -92,21 +121,21 @@ function secuenciaHenry(array, n) {
 //    lista.add(3);
 //    lista.size(); --> 3
 
-LinkedList.prototype.size = function(){
+LinkedList.prototype.size = function () {
   /* Tu codigo aqui */
   let contador = 0;
   let apuntador = this.head;
-  if (!apuntador){
+  if (!apuntador) {
     return 0;
   } else {
     contador++;
   }
-  while (apuntador.next){
+  while (apuntador.next) {
     apuntador = apuntador.next;
-    contador++; 
+    contador++;
   }
   return contador;
-}
+};
 
 // EJERCICIO 4
 // Implementar el método addInPos dentro del prototype de LinkedList que deberá agregar un elemento en
@@ -124,22 +153,22 @@ LinkedList.prototype.size = function(){
 //    lista.addInPos(2, 3); --> Debería devolver false ya que no es posible agregar en la posición 2
 //    sin antes tener cargada la posición 0 y 1.
 
-LinkedList.prototype.addInPos = function(pos,value){
+LinkedList.prototype.addInPos = function (pos, value) {
   /* Tu codigo aqui */
   let apuntador = this.head;
   let nuevoNodo = new Node(value);
   let contador = 0;
-  if (!apuntador){
+  if (!apuntador) {
     return false;
   }
-  while (contador !== pos - 1){
+  while (contador !== pos - 1) {
     apuntador = apuntador.next;
     contador++;
   }
   nuevoNodo.next = apuntador.next;
   apuntador.next = nuevoNodo;
   return true;
-}
+};
 
 // EJERCICIO 5
 // Implementar el método removeFromPos dentro del prototype de LinkedList que deberá remover un elemento de
@@ -155,7 +184,7 @@ LinkedList.prototype.addInPos = function(pos,value){
 // Ejemplo 2:
 //    Suponiendo que se pide una posición inválida: removeFromPos(8) --> false
 
-LinkedList.prototype.removeFromPos = function(pos){
+LinkedList.prototype.removeFromPos = function (pos) {
   // Tu código aca:
   // cuando la lista esta vacia
   if (!this.head) {
@@ -181,11 +210,9 @@ LinkedList.prototype.removeFromPos = function(pos){
     apuntador = apuntador.next;
   }
   return false;
-}
-
+};
 
 // ----------------------
-
 
 // ----- QUEUE -----
 
@@ -206,29 +233,27 @@ LinkedList.prototype.removeFromPos = function(pos){
 // - Tener un ticket que corresponda con el evento (prop event de ticket)
 // - Que no haya ingresado ya otra persona al evento con ese mismo número de ticket
 // Finalmente la función debe devolver un arreglo con todos los nombres de las personas que pudieron ingresar
-// Importante!: Aquellas personas que no cumplan con los requisitos para ingresar deben ser removidos de la cola 
+// Importante!: Aquellas personas que no cumplan con los requisitos para ingresar deben ser removidos de la cola
 
-var controlAcces = function(queue, event){
+var controlAcces = function (queue, event) {
   // Tu código aca:
   let arrayNombre = [];
   let arrayTicket = [];
-  queue.array.forEach(function (elemento){
-    for (let i = 0; i < arrayTicket.length; i++){
-      if (elemento.ticket.number === arrayTicket[i]){
+  queue.array.forEach(function (elemento) {
+    for (let i = 0; i < arrayTicket.length; i++) {
+      if (elemento.ticket.number === arrayTicket[i]) {
         return;
       }
     }
-    if (elemento.age >= 18 && elemento.ticket.event === event){
+    if (elemento.age >= 18 && elemento.ticket.event === event) {
       arrayNombre.push(elemento.fullname);
       arrayTicket.push(elemento.ticket.number);
     }
-  })
+  });
   return arrayNombre;
-}
-
+};
 
 // ---------------
-
 
 // ----- BST -----
 
@@ -246,13 +271,11 @@ var controlAcces = function(queue, event){
 //      \
 //       5
 
-var generateBST = function(array){
+var generateBST = function (array) {
   /* Tu codigo aqui */
-
-}
+};
 
 // ---------------
-
 
 // Ejercicio 8
 // Dado un arreglo ordenado, encontrar el índice de un elemento específico pasado como parámetro
@@ -266,11 +289,9 @@ var generateBST = function(array){
 //    binarySearch(array, 2) --> Devolvería 1 ya que array[1] = 2
 //    [Donde 2 sería el número sobre el cuál queremos saber su posición en el array]
 
-
-var binarySearch = function (array,elemento) {
+var binarySearch = function (array, elemento) {
   /* Tu codigo aqui */
-
-} 
+};
 
 // EJERCICIO 9
 // Ordená un arreglo de números usando un bubble sort pero con algunas particularidades.
@@ -309,11 +330,9 @@ var binarySearch = function (array,elemento) {
 // ]
 // (Siempre el ordenamiento es de menor a mayor sea cual fuera la propiedad indicada para el orden)
 
-
-var specialSort = function(array, firstOrd, secondOrd) {
+var specialSort = function (array, firstOrd, secondOrd) {
   // Tu código aca:
-
-}
+};
 
 // ----- Closures -----
 
@@ -331,13 +350,12 @@ var specialSort = function(array, firstOrd, secondOrd) {
 
 function closureSum(numFijo) {
   /* Tu codigo aqui */
-  return function(num){
+  return function (num) {
     return numFijo + num;
-  }
+  };
 }
 
 // ------------------- No Cambies nada de aqui abajo ----------------------------
-
 
 module.exports = {
   objContains,
@@ -349,4 +367,4 @@ module.exports = {
   binarySearch,
   specialSort,
   closureSum,
-}
+};
