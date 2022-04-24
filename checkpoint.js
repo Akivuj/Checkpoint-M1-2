@@ -96,13 +96,6 @@ function secuenciaHenry(array, n) {
   //   }
   //   return numero + suma(numero - 1);
   // };
-  let palabra = function (elemento) {
-    if (typeof elemento === "string") {
-      return true;
-    } else {
-      return false;
-    }
-  };
 }
 
 // ---------------------
