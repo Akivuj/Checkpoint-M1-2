@@ -96,6 +96,23 @@ function secuenciaHenry(array, n) {
   //   }
   //   return numero + suma(numero - 1);
   // };
+  let arrayNuevo = [];
+  if (n < 0) {
+    return false;
+  }
+  array.forEach(function (elemento) {
+    if (typeof elemento === "string") {
+      arrayNuevo.push(elemento.length);
+    } else {
+      arrayNuevo.push(elemento);
+    }
+  });
+  if (n === 0) {
+    return arrayNuevo[0];
+  }
+  arrayNuevo.push((arrayNuevo[0] + arrayNuevo[1] + arrayNuevo[2]) * 2);
+  arrayNuevo.shift();
+  return secuenciaHenry(arrayNuevo, n - 1);
 }
 
 // ---------------------
