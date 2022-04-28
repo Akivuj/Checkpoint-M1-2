@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { binarySearch } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 8: binarySearch", function () {
+describe("EJERCICIO 8: binarySearch", function () {
   it("Debe devolver 1 para el arreglo [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] si busca el 2", function () {
     expect(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2)).to.equal(1);
   });

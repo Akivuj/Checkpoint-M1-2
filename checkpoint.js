@@ -110,7 +110,11 @@ function secuenciaHenry(array, n) {
   if (n === 0) {
     return arrayNuevo[0];
   }
-  arrayNuevo.push((arrayNuevo[0] + arrayNuevo[1] + arrayNuevo[2]) * 2);
+  arrayNuevo.push(
+    arrayNuevo.reduce(function (a, b) {
+      return a + b;
+    }) * 2
+  );
   arrayNuevo.shift();
   return secuenciaHenry(arrayNuevo, n - 1);
 }
@@ -283,6 +287,12 @@ var controlAcces = function (queue, event) {
 
 var generateBST = function (array) {
   /* Tu codigo aqui */
+  let arbol = new BinarySearchTree(array[0]);
+  array.shift();
+  array.forEach(function (elemento) {
+    arbol.insert(elemento);
+  });
+  return arbol;
 };
 
 // ---------------
