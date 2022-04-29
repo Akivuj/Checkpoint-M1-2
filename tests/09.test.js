@@ -3,7 +3,7 @@ const expect = require("chai").expect;
 /* eslint-disable no-undef */
 const { specialSort } = require("../checkpoint.js");
 
-xdescribe("EJERCICIO 9: specialSort", function () {
+describe("EJERCICIO 9: specialSort", function () {
   var arraySS = [
     { name: "Notebook", price: 1200, review: 8 },
     { name: "Smartphone", price: 300, review: 9 },

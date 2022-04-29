@@ -311,6 +311,20 @@ var generateBST = function (array) {
 
 var binarySearch = function (array, elemento) {
   /* Tu codigo aqui */
+  let min = 0;
+  let max = array.length - 1;
+  let guess;
+  while (max > min) {
+    guess = Math.floor((max + min) / 2);
+    if (array[guess] === elemento) {
+      return guess;
+    } else if (array[guess] < elemento) {
+      min = guess + 1;
+    } else {
+      max = guess - 1;
+    }
+  }
+  return -1;
 };
 
 // EJERCICIO 9
