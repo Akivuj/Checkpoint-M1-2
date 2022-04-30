@@ -365,7 +365,27 @@ var binarySearch = function (array, elemento) {
 // (Siempre el ordenamiento es de menor a mayor sea cual fuera la propiedad indicada para el orden)
 
 var specialSort = function (array, firstOrd, secondOrd) {
+  // Iteration 1: [6,4,2,5,7] → [4,6,2,5,7] → [4,2,6,5,7] → [4,2,5,6,7] → [4,2,5,6,7]
+  // Iteration 2:[4,2,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7]
+  // Iteration 3: [2,4,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7] → [2,4,5,6,7]
   // Tu código aca:
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - 1; j++) {
+      if (array[j][firstOrd] > array[j + 1][firstOrd]) {
+        let tmp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = tmp;
+      } else if (
+        array[j][firstOrd] === array[j + 1][firstOrd] &&
+        array[j][secondOrd] > array[j + 1][secondOrd]
+      ) {
+        let tmp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = tmp;
+      }
+    }
+  }
+  return array;
 };
 
 // ----- Closures -----
